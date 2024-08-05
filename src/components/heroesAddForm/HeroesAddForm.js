@@ -10,7 +10,27 @@
 // Элементы <option></option> желательно сформировать на базе
 // данных из фильтров
 
+import { useSelector } from "react-redux";
+
 const HeroesAddForm = () => {
+    const {filters, filtersLoadingStatus} = useSelector(state => state);
+
+    const renderFilters = (filters, status) => {
+        if (status === "loading") {
+            return <option>Loading...</option>
+        } else if (status === "error") {
+            return <option>Loading Error</option>
+        }
+        
+        if (filters && filters.length > 0 ) {
+            return filters.map(({name, label}) => {
+                if (name === 'all')  return;
+
+                return <option key={name} value={name}>{label}</option>
+            })
+        }
+    }
+
     return (
         <form className="border p-4 shadow-lg rounded">
             <div className="mb-3">
@@ -42,11 +62,9 @@ const HeroesAddForm = () => {
                     className="form-select" 
                     id="element" 
                     name="element">
+                        {}
                     <option >I wield the element...</option>
-                    <option value="fire">Fire</option>
-                    <option value="water">Water</option>
-                    <option value="wind">Wind</option>
-                    <option value="earth">Earth</option>
+                    {renderFilters(filters, filtersLoadingStatus)}
                 </select>
             </div>
 
