@@ -1,0 +1,29 @@
+{
+    "heroes": [
+        {
+            "id": 1,
+            "name": "Super Warrior",
+            "description": "First hero in the rating",
+            "element": "fire"
+        },
+        {
+            "id": 2,
+            "name": "Uknown Hero",
+            "description": "Hidden in shadow",
+            "element": "wind"
+        },
+        {
+            "id": 3,
+            "name": "Sea Hero",
+            "description": "Water super power",
+            "element": "water"
+        }
+    ],
+    "filters": [
+        "all",
+        "fire",
+        "water",
+        "wind",
+        "earth"
+    ]
+}
