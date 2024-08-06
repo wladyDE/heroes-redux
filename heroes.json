@@ -1,49 +1,67 @@
 {
-    "heroes": [
-        {
-            "id": 1,
-            "name": "Super Warrior",
-            "description": "First hero in the rating",
-            "element": "fire"
-        },
-        {
-            "id": 2,
-            "name": "Uknown Hero",
-            "description": "Hidden in shadow",
-            "element": "wind"
-        },
-        {
-            "id": 3,
-            "name": "Sea Hero",
-            "description": "Water super power",
-            "element": "water"
-        }
-    ],
-    "filters": [
-        {
-            "name": "all",
-            "label": "All",
-            "className": "btn-outline-dark"
-        },
-        {
-            "name": "fire",
-            "label": "Fire",
-            "className": "btn-danger"
-        },
-        {
-            "name": "water",
-            "label": "Water",
-            "className": "btn-primary"
-        },
-        {
-            "name": "wind",
-            "label": "Wind",
-            "className": "btn-success"
-        },
-        {
-            "name": "earth",
-            "label": "Earth",
-            "className": "btn-secondary"
-        }
-    ]
+  "heroes": [
+    {
+      "id": 1,
+      "name": "Super Warrior",
+      "description": "First hero in the rating",
+      "element": "fire"
+    },
+    {
+      "id": 2,
+      "name": "Uknown Hero",
+      "description": "Hidden in shadow",
+      "element": "wind"
+    },
+    {
+      "id": 3,
+      "name": "Sea Hero",
+      "description": "Water super power",
+      "element": "water"
+    },
+    {
+      "id": "76eab7f3-fa24-4fba-8dc3-237a4c2c0d62",
+      "name": "Volodymyr Havryliuk",
+      "description": "ales",
+      "element": "fire"
+    },
+    {
+      "id": "0a345e42-aa5d-4438-917b-f1d4da42336b",
+      "name": "Volodymyr Havryliuk",
+      "description": "fasdf",
+      "element": "fire"
+    },
+    {
+      "id": "f6177ede-57b4-4952-8518-06027ba02115",
+      "name": "Volodymyr Havryliuk",
+      "description": "123123",
+      "element": "wind"
+    }
+  ],
+  "filters": [
+    {
+      "name": "all",
+      "label": "All",
+      "className": "btn-outline-dark"
+    },
+    {
+      "name": "fire",
+      "label": "Fire",
+      "className": "btn-danger"
+    },
+    {
+      "name": "water",
+      "label": "Water",
+      "className": "btn-primary"
+    },
+    {
+      "name": "wind",
+      "label": "Wind",
+      "className": "btn-success"
+    },
+    {
+      "name": "earth",
+      "label": "Earth",
+      "className": "btn-secondary"
+    }
+  ]
 }

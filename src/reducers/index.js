@@ -43,13 +43,19 @@ const reducer = (state = initialState, action) => {
                 filtersLoadingStatus: 'error'
             }
         case 'ACTIVE_FILTER_CHANGED':
-            const filteredHeroes = action.payload === 'all' ? state.heroes :
-            state.heroes.filter(hero => hero.element === action.payload)
-        
             return {
                 ...state,
                 activeFilter: action.payload,
-                filteredHeroes
+                filteredHeroes : action.payload === 'all' ? state.heroes :
+                state.heroes.filter(hero => hero.element === action.payload)
+            }
+        case 'HERO_CREATED':
+            return {
+                ...state,
+                heroes : [state.heroes, action.payload],
+                filteredHeroes : state.activeFilter === 'all' || action.payload.element === state.activeFilter  
+                ? [...state.filteredHeroes, action.payload] :
+                state.filteredHeroes
             }
         default: return state
     }

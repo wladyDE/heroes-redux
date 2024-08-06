@@ -1,19 +1,32 @@
+import { useRef } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { v4 as uuidv4 } from 'uuid';
 
-
-// Задача для этого компонента:
-// Реализовать создание нового героя с введенными данными. Он должен попадать
-// в общее состояние и отображаться в списке + фильтроваться
-// Уникальный идентификатор персонажа можно сгенерировать через uiid
-// Усложненная задача:
-// Персонаж создается и в файле json при помощи метода POST
-// Дополнительно:
-// Элементы <option></option> желательно сформировать на базе
-// данных из фильтров
-
-import { useSelector } from "react-redux";
+import { useHttp } from "../../hooks/http.hook";
+import { heroCreated } from "../../actions";
 
 const HeroesAddForm = () => {
     const {filters, filtersLoadingStatus} = useSelector(state => state);
+    const heroNameRef = useRef(null);
+    const heroDescriptionRef= useRef(null);
+    const heroElementRef= useRef(null);
+    const {request} = useHttp()
+    const dispatch = useDispatch();
+
+    const handleSubmit = (event) => {
+        event.preventDefault()
+
+        const newHero = {
+            id : uuidv4(),
+            name : heroNameRef.current.value,
+            description :  heroDescriptionRef.current.value,
+            element : heroElementRef.current.value
+        }
+
+        request("http://localhost:3001/heroes", 'POST', JSON.stringify(newHero))
+            .then(data => dispatch(heroCreated(data)))
+            .catch(error => console.log(error))
+    }
 
     const renderFilters = (filters, status) => {
         if (status === "loading") {
@@ -32,7 +45,7 @@ const HeroesAddForm = () => {
     }
 
     return (
-        <form className="border p-4 shadow-lg rounded">
+        <form className="border p-4 shadow-lg rounded" onSubmit={handleSubmit}>
             <div className="mb-3">
                 <label htmlFor="name" className="form-label fs-4">New hero</label>
                 <input 
@@ -41,7 +54,9 @@ const HeroesAddForm = () => {
                     name="name" 
                     className="form-control" 
                     id="name" 
-                    placeholder="What is my name?"/>
+                    placeholder="What is my name?"
+                    ref={heroNameRef}
+                />
             </div>
 
             <div className="mb-3">
@@ -52,7 +67,9 @@ const HeroesAddForm = () => {
                     className="form-control" 
                     id="text" 
                     placeholder="What can I do?"
-                    style={{"height": '130px'}}/>
+                    style={{"height": '130px'}}
+                    ref={heroDescriptionRef}
+                />
             </div>
 
             <div className="mb-3">
@@ -61,8 +78,9 @@ const HeroesAddForm = () => {
                     required
                     className="form-select" 
                     id="element" 
-                    name="element">
-                        {}
+                    name="element"
+                    ref={heroElementRef}
+                >
                     <option >I wield the element...</option>
                     {renderFilters(filters, filtersLoadingStatus)}
                 </select>
