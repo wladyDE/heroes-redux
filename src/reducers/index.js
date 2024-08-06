@@ -1,3 +1,5 @@
+import { act } from "react"
+
 const initialState = {
     heroes: [],
     heroesLoadingStatus: 'idle',
@@ -46,16 +48,22 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 activeFilter: action.payload,
-                filteredHeroes : action.payload === 'all' ? state.heroes :
-                state.heroes.filter(hero => hero.element === action.payload)
+                filteredHeroes: action.payload === 'all' ? state.heroes :
+                    state.heroes.filter(hero => hero.element === action.payload)
             }
         case 'HERO_CREATED':
             return {
                 ...state,
-                heroes : [state.heroes, action.payload],
-                filteredHeroes : state.activeFilter === 'all' || action.payload.element === state.activeFilter  
-                ? [...state.filteredHeroes, action.payload] :
-                state.filteredHeroes
+                heroes: [state.heroes, action.payload],
+                filteredHeroes: state.activeFilter === 'all' || action.payload.element === state.activeFilter
+                    ? [...state.filteredHeroes, action.payload] :
+                    state.filteredHeroes
+            }
+        case 'HERO_DELETED':
+            return {
+                ...state,
+                heroes: state.heroes.filter(hero => hero.id !== action.payload),
+                filteredHeroes: state.filteredHeroes.filter(hero => hero.id !== action.payload)
             }
         default: return state
     }

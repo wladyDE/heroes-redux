@@ -19,22 +19,10 @@
       "element": "water"
     },
     {
-      "id": "76eab7f3-fa24-4fba-8dc3-237a4c2c0d62",
+      "id": "5f78f384-99ec-44a8-9e1b-bbe7453364be",
       "name": "Volodymyr Havryliuk",
-      "description": "ales",
-      "element": "fire"
-    },
-    {
-      "id": "0a345e42-aa5d-4438-917b-f1d4da42336b",
-      "name": "Volodymyr Havryliuk",
-      "description": "fasdf",
-      "element": "fire"
-    },
-    {
-      "id": "f6177ede-57b4-4952-8518-06027ba02115",
-      "name": "Volodymyr Havryliuk",
-      "description": "123123",
-      "element": "wind"
+      "description": "many",
+      "element": "water"
     }
   ],
   "filters": [
