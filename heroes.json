@@ -17,12 +17,6 @@
       "name": "Sea Hero",
       "description": "Water super power",
       "element": "water"
-    },
-    {
-      "id": "8f2d6b21-4866-4b9f-9f89-a0b2d9f15942",
-      "name": "Volodymyr Havryliuk",
-      "description": "afsdfasd",
-      "element": "fire"
     }
   ],
   "filters": [

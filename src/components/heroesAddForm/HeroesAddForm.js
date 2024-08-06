@@ -6,7 +6,7 @@ import { useHttp } from "../../hooks/http.hook";
 import { heroCreated } from "../../actions";
 
 const HeroesAddForm = () => {
-    const {filters, filtersLoadingStatus} = useSelector(state => state);
+    const {filters, filtersLoadingStatus} = useSelector(state => state.filters);
     const heroNameRef = useRef(null);
     const heroDescriptionRef= useRef(null);
     const heroElementRef= useRef(null);
