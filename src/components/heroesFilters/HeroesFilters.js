@@ -19,8 +19,14 @@ const HeroesFilters = () => {
 
     if (filtersLoadingStatus === "loading") {
         return <Spinner />;
-    } else if (filtersLoadingStatus === "error") {
+    }
+    
+    if (filtersLoadingStatus === "error") {
         return <h5 className="text-center mt-5">Loading error</h5>
+    }
+
+    if (filters.length === 0) {
+        return <h5 className="text-center mt-5">There are no filters</h5>
     }
 
     return (

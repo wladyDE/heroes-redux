@@ -26,6 +26,10 @@ const HeroesAddForm = () => {
         request("http://localhost:3001/heroes", 'POST', JSON.stringify(newHero))
             .then(data => dispatch(heroCreated(data)))
             .catch(error => console.log(error))
+
+            heroNameRef.current.value = ''
+            heroDescriptionRef.current.value = ''
+            heroElementRef.current.value = ''
     }
 
     const renderFilters = (filters, status) => {
