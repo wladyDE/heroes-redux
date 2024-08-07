@@ -9,6 +9,7 @@ import HeroesListItem from "../heroesListItem/HeroesListItem";
 import Spinner from '../spinner/Spinner';
 
 const HeroesList = () => {
+    //memorize the values with createSelector
     const filteredHeroesSelector = createSelector(
         (state) => state.filters.activeFilter,
         (state) => state.heroes.heroes,
