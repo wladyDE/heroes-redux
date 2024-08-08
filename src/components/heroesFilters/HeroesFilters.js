@@ -3,7 +3,8 @@ import { useEffect } from "react";
 
 import { useHttp } from '../../hooks/http.hook'
 import Spinner from '../spinner/Spinner.js'
-import { activeFilterChanged, fetchFilters } from "../../actions";
+import {fetchFilters } from "../../actions";
+import {filtersChanged} from '../heroesFilters/filtersSlice.js'
 
 const HeroesFilters = () => {
     const { filters, filtersLoadingStatus, activeFilter } = useSelector(state => state.filters);
@@ -34,7 +35,7 @@ const HeroesFilters = () => {
                     {filters.map(({label, name, className}) => {
                         return <button
                             className={`btn ${className} ${activeFilter === name ? 'active' : ''}`}
-                            onClick={() => dispatch(activeFilterChanged(name))}
+                            onClick={() => dispatch(filtersChanged(name))}
                             key={name}
                         >
                             {label}
