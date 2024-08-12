@@ -1,4 +1,4 @@
-const HeroesListItem = ({ name, description, element, handleDelete }) => {
+const HeroesListItem = ({ name, description, element, onDelete }) => {
 	let elementClassName;
 
 	switch (element) {
@@ -33,7 +33,7 @@ const HeroesListItem = ({ name, description, element, handleDelete }) => {
 				<p className="card-text">{description}</p>
 			</div>
 			<span
-				onClick={handleDelete}
+				onClick={onDelete}
 				className="position-absolute top-0 start-100 translate-middle badge border rounded-pill bg-light"
 			>
 				<button

@@ -1,38 +1,36 @@
 import { useRef } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { v4 as uuidv4 } from 'uuid';
 
-import { useHttp } from "../../hooks/http.hook";
-import { heroCreated } from "../heroesList/heroesSlice";
+import { useCreateHeroMutation } from "../../api/apiSlice.js";
 import { selectAll } from "../heroesFilters/filtersSlice";
 import store from '../../store/index.js'
 
 const HeroesAddForm = () => {
-    const {filtersLoadingStatus} = useSelector(state => state.filters);
-    const filters = selectAll(store.getState())
     const heroNameRef = useRef(null);
-    const heroDescriptionRef= useRef(null);
-    const heroElementRef= useRef(null);
-    const {request} = useHttp()
-    const dispatch = useDispatch();
+    const heroDescriptionRef = useRef(null);
+    const heroElementRef = useRef(null);
+
+    const [createHero, { isLoading }] = useCreateHeroMutation()
+
+    const { filtersLoadingStatus } = useSelector(state => state.filters);
+    const filters = selectAll(store.getState())
 
     const handleSubmit = (event) => {
         event.preventDefault()
 
         const newHero = {
-            id : uuidv4(),
-            name : heroNameRef.current.value,
-            description :  heroDescriptionRef.current.value,
-            element : heroElementRef.current.value
+            id: uuidv4(),
+            name: heroNameRef.current.value,
+            description: heroDescriptionRef.current.value,
+            element: heroElementRef.current.value
         }
 
-        request("http://localhost:3001/heroes", 'POST', JSON.stringify(newHero))
-            .then(data => dispatch(heroCreated(data)))
-            .catch(error => console.log(error))
+        createHero(newHero).unwrap()
 
-            heroNameRef.current.value = ''
-            heroDescriptionRef.current.value = ''
-            heroElementRef.current.value = ''
+        heroNameRef.current.value = ''
+        heroDescriptionRef.current.value = ''
+        heroElementRef.current.value = ''
     }
 
     const renderFilters = (filters, status) => {
@@ -41,10 +39,10 @@ const HeroesAddForm = () => {
         } else if (status === "error") {
             return <option>Loading Error</option>
         }
-        
-        if (filters && filters.length > 0 ) {
-            return filters.map(({name, label}) => {
-                if (name === 'all')  return;
+
+        if (filters && filters.length > 0) {
+            return filters.map(({ name, label }) => {
+                if (name === 'all') return;
 
                 return <option key={name} value={name}>{label}</option>
             })
@@ -55,12 +53,12 @@ const HeroesAddForm = () => {
         <form className="border p-4 shadow-lg rounded" onSubmit={handleSubmit}>
             <div className="mb-3">
                 <label htmlFor="name" className="form-label fs-4">New hero</label>
-                <input 
+                <input
                     required
-                    type="text" 
-                    name="name" 
-                    className="form-control" 
-                    id="name" 
+                    type="text"
+                    name="name"
+                    className="form-control"
+                    id="name"
                     placeholder="What is my name?"
                     ref={heroNameRef}
                 />
@@ -70,21 +68,21 @@ const HeroesAddForm = () => {
                 <label htmlFor="text" className="form-label fs-4">Description</label>
                 <textarea
                     required
-                    name="text" 
-                    className="form-control" 
-                    id="text" 
+                    name="text"
+                    className="form-control"
+                    id="text"
                     placeholder="What can I do?"
-                    style={{"height": '130px'}}
+                    style={{ "height": '130px' }}
                     ref={heroDescriptionRef}
                 />
             </div>
 
             <div className="mb-3">
                 <label htmlFor="element" className="form-label">Choose heroes element</label>
-                <select 
+                <select
                     required
-                    className="form-select" 
-                    id="element" 
+                    className="form-select"
+                    id="element"
                     name="element"
                     ref={heroElementRef}
                 >

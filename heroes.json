@@ -17,6 +17,12 @@
       "name": "Sea Hero",
       "description": "Water super power",
       "element": "water"
+    },
+    {
+      "id": "e91e8c01-6d46-4ffd-a69b-2fc831e52c03",
+      "name": "Volodymyr Havryliuk",
+      "description": "gsdg",
+      "element": "fire"
     }
   ],
   "filters": [
@@ -27,25 +33,25 @@
       "className": "btn-outline-dark"
     },
     {
-      "id" : "fire",
+      "id": "fire",
       "name": "fire",
       "label": "Fire",
       "className": "btn-danger"
     },
     {
-      "id" : "water",
+      "id": "water",
       "name": "water",
       "label": "Water",
       "className": "btn-primary"
     },
     {
-      "id" : "wind",
+      "id": "wind",
       "name": "wind",
       "label": "Wind",
       "className": "btn-success"
     },
     {
-      "id" : "earth",
+      "id": "earth",
       "name": "earth",
       "label": "Earth",
       "className": "btn-secondary"
