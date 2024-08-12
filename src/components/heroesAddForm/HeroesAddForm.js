@@ -4,9 +4,12 @@ import { v4 as uuidv4 } from 'uuid';
 
 import { useHttp } from "../../hooks/http.hook";
 import { heroCreated } from "../heroesList/heroesSlice";
+import { selectAll } from "../heroesFilters/filtersSlice";
+import store from '../../store/index.js'
 
 const HeroesAddForm = () => {
-    const {filters, filtersLoadingStatus} = useSelector(state => state.filters);
+    const {filtersLoadingStatus} = useSelector(state => state.filters);
+    const filters = selectAll(store.getState())
     const heroNameRef = useRef(null);
     const heroDescriptionRef= useRef(null);
     const heroElementRef= useRef(null);

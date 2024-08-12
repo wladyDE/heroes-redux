@@ -1,12 +1,15 @@
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 
+import store from '../../store/index.js'
+import { selectAll} from "../heroesFilters/filtersSlice.js";
 import Spinner from '../spinner/Spinner.js'
 import {filtersChanged, fetchFilters} from '../heroesFilters/filtersSlice.js'
 
-const HeroesFilters = () => {
-    const { filters, filtersLoadingStatus, activeFilter } = useSelector(state => state.filters);
+const HeroesFilters = () => {   
+    const {filtersLoadingStatus, activeFilter } = useSelector(state => state.filters);
     const dispatch = useDispatch();
+    const filters = selectAll(store.getState())
 
     useEffect(() => {
         dispatch(fetchFilters())
