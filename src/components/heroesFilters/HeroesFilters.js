@@ -1,25 +1,19 @@
 import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
 
-import store from '../../store/index.js'
-import { selectAll} from "../heroesFilters/filtersSlice.js";
 import Spinner from '../spinner/Spinner.js'
-import {filtersChanged, fetchFilters} from '../heroesFilters/filtersSlice.js'
+import {filtersChanged} from '../heroesFilters/filtersSlice.js'
+import { useFetchFiltersQuery } from "../heroesFilters/filtersSlice.js";
 
 const HeroesFilters = () => {   
-    const {filtersLoadingStatus, activeFilter } = useSelector(state => state.filters);
+    const {activeFilter } = useSelector(state => state.filters);
     const dispatch = useDispatch();
-    const filters = selectAll(store.getState())
+    const { data: filters, isError, isLoading } = useFetchFiltersQuery();
 
-    useEffect(() => {
-        dispatch(fetchFilters())
-    }, []);
-
-    if (filtersLoadingStatus === "loading") {
+    if (isLoading) {
         return <Spinner />;
     }
     
-    if (filtersLoadingStatus === "error") {
+    if (isError) {
         return <h5 className="text-center mt-5">Loading error</h5>
     }
 
